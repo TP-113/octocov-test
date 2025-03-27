@@ -1,0 +1,19 @@
+name: Example Workflow
+on: [push]
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Test
+        run: |
+            flutter test --coverage --coverage-path coverage/lcov.info
+      
+      - name: Setup LCOV
+        uses: hrishikesh-kadam/setup-lcov@v1
+
+      - name: Use Custom Action
+        uses: TP-113/octocov-action@v1
